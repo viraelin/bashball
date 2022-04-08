@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/Menu/MenuButtonOptionsBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/Menu/MenuButtonOptionsBool.gd" type="Script" id=2]
+
+[node name="MenuButtonOptionsBool" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Label" parent="Anchor/Labels" index="0"]
+margin_top = 11.0
+margin_bottom = 37.0
+
+[node name="Left" parent="Anchor/Labels/Value" index="0"]
+margin_left = 105.0
+margin_top = 11.0
+margin_right = 117.0
+margin_bottom = 37.0
+
+[node name="Label" parent="Anchor/Labels/Value" index="1"]
+margin_left = 121.0
+margin_top = 11.0
+margin_right = 238.0
+margin_bottom = 37.0
+text = "OFF"
+
+[node name="Right" parent="Anchor/Labels/Value" index="2"]
+margin_left = 242.0
+margin_top = 11.0
+margin_bottom = 37.0

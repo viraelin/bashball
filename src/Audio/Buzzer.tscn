@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://res/audio/boom4.wav" type="AudioStream" id=1]
+
+[node name="Buzzer" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+pitch_scale = 2.0
+bus = "Reverb"

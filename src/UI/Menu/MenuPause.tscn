@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/UI/Menu/MenuButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/Menu/MenuPause.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/Menu/MenuOptions.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/res/menu_font_big.tres" type="DynamicFont" id=4]
+
+[node name="MenuPause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0313726, 0.0313726, 0.0313726, 0.588235 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.1
+margin_top = 56.0
+margin_bottom = 132.0
+custom_fonts/font = ExtResource( 4 )
+text = "PAUSED"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" parent="Buttons" instance=ExtResource( 1 )]
+margin_top = 284.0
+margin_right = 1280.0
+margin_bottom = 332.0
+text = "Resume"
+
+[node name="Options" parent="Buttons" instance=ExtResource( 1 )]
+margin_top = 336.0
+margin_right = 1280.0
+margin_bottom = 384.0
+text = "Options"
+
+[node name="Quit" parent="Buttons" instance=ExtResource( 1 )]
+margin_top = 388.0
+margin_right = 1280.0
+margin_bottom = 436.0
+text = "Quit"
+
+[node name="MenuOptions" parent="." instance=ExtResource( 3 )]

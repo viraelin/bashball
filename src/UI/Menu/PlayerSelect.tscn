@@ -1,0 +1,215 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/UI/res/menu_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/UI/Menu/PlayerSelect.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/Menu/Key.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/Menu/MenuButtonTeamSelect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Player/Origin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Player/Body.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.84472 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.119565, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.197727 ), -0.402855, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 64, 64, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 689.22
+initial_velocity_random = 1.0
+angular_velocity = 112.94
+angular_velocity_random = 0.68
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 300.0
+angle = 240.0
+angle_random = 0.5
+scale = 32.0
+scale_random = 0.58
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 7 )
+
+[node name="PlayerSelect" type="Control"]
+anchor_right = 0.2
+anchor_bottom = 0.533
+margin_bottom = 0.23996
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="ReadyParticles" type="Particles2D" parent="."]
+show_behind_parent = true
+z_index = -1
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.91
+process_material = SubResource( 3 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fill" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+color = Color( 0.0313726, 0.0313726, 0.0313726, 0.882353 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Box" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 32.0
+margin_right = -12.0
+margin_bottom = -12.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Name" type="Label" parent="Box"]
+margin_right = 232.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 1 )
+text = "PLAYER_NAME"
+align = 1
+
+[node name="Body" type="Control" parent="Box"]
+margin_top = 42.0
+margin_right = 232.0
+margin_bottom = 147.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Body" parent="Box/Body" instance=ExtResource( 6 )]
+rotation = 1.5708
+
+[node name="Origin" parent="Box/Body/Body" instance=ExtResource( 5 )]
+
+[node name="PressButtons" type="VBoxContainer" parent="Box"]
+modulate = Color( 1, 1, 1, 0.588235 )
+margin_top = 151.0
+margin_right = 232.0
+margin_bottom = 339.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer1" type="Label" parent="Box/PressButtons"]
+margin_right = 232.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+
+[node name="Button" type="HBoxContainer" parent="Box/PressButtons"]
+margin_top = 18.0
+margin_right = 232.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer1" type="Label" parent="Box/PressButtons/Button"]
+margin_top = 17.0
+margin_right = 88.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+
+[node name="Button" parent="Box/PressButtons/Button" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 92.0
+margin_right = 140.0
+margin_bottom = 48.0
+text = "A"
+rounded = true
+
+[node name="Spacer2" type="Label" parent="Box/PressButtons/Button"]
+margin_left = 144.0
+margin_top = 17.0
+margin_right = 232.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+
+[node name="Key0" parent="Box/PressButtons" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 70.0
+margin_right = 180.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 128, 48 )
+text = "ENTER"
+wide = true
+
+[node name="Key1" parent="Box/PressButtons" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 92.0
+margin_top = 122.0
+margin_right = 140.0
+margin_bottom = 170.0
+text = "E"
+
+[node name="Spacer2" type="Label" parent="Box/PressButtons"]
+margin_top = 174.0
+margin_right = 232.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+
+[node name="Buttons" type="VBoxContainer" parent="Box"]
+visible = false
+margin_top = 192.0
+margin_right = 232.0
+margin_bottom = 339.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Team" parent="Box/Buttons" instance=ExtResource( 4 )]
+margin_top = 23.0
+margin_right = 232.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 200, 48 )
+aliases = [ "Team 1", "Team 2", "Team 3", "Team 4" ]
+
+[node name="Shape" parent="Box/Buttons" instance=ExtResource( 4 )]
+margin_top = 75.0
+margin_right = 232.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 200, 48 )
+value_max = 2
+aliases = [ "Square", "Triangle", "Circle" ]
+
+[node name="ReadyTween" type="Tween" parent="."]

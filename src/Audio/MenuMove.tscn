@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://res/audio/click.ogg" type="AudioStream" id=1]
+
+[node name="MenuMove" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+bus = "SFX"

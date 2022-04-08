@@ -1,0 +1,375 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/UI/Menu/MenuControls.gd" type="Script" id=1]
+[ext_resource path="res://res/ui-controller.png" type="Texture" id=2]
+[ext_resource path="res://src/UI/LinePath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/res/menu_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/UI/Menu/Key.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/Menu/NavigationButtons.tscn" type="PackedScene" id=15]
+
+[sub_resource type="Curve2D" id=2]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 15.963, 44.2366, 0, 0, -104, 64, 0, 0, -2.94921, -76.6114, 0, 0 )
+}
+
+[sub_resource type="Curve2D" id=3]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( -71.4622, -0.315334, 0, 0, -120, 144, 0, 0, 83.0418, -11.2744, -256, 80 )
+}
+
+[node name="MenuControls" type="Control"]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Controller" type="Control" parent="."]
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 720.0
+margin_bottom = 632.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controller"]
+margin_left = 128.0
+margin_top = 192.0
+margin_right = 742.0
+margin_bottom = 625.0
+rect_scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+
+[node name="Boost" type="Control" parent="Controller"]
+margin_left = 344.0
+margin_top = 112.0
+margin_right = 384.0
+margin_bottom = 152.0
+
+[node name="LinePath" parent="Controller/Boost" instance=ExtResource( 3 )]
+curve = SubResource( 2 )
+
+[node name="LinePath2" parent="Controller/Boost" instance=ExtResource( 3 )]
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+curve = SubResource( 2 )
+
+[node name="Label" type="Label" parent="Controller/Boost"]
+margin_left = -40.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 4 )
+text = "BOOST"
+align = 1
+
+[node name="Move" type="Control" parent="Controller"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label2" type="Label" parent="Controller/Move"]
+margin_left = 56.0
+margin_top = 168.0
+margin_right = 128.0
+margin_bottom = 206.0
+custom_fonts/font = ExtResource( 4 )
+text = "MOVE"
+align = 1
+
+[node name="LinePath3" parent="Controller/Move" instance=ExtResource( 3 )]
+position = Vector2( 344, 128 )
+curve = SubResource( 3 )
+
+[node name="Keyboard" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="V" type="VBoxContainer" parent="Keyboard"]
+margin_left = 736.0
+margin_top = 144.0
+margin_right = 1024.0
+margin_bottom = 656.0
+custom_constants/separation = 80
+
+[node name="P1" type="VBoxContainer" parent="Keyboard/V"]
+margin_right = 288.0
+margin_bottom = 176.0
+custom_constants/separation = 16
+
+[node name="Move" type="HBoxContainer" parent="Keyboard/V/P1"]
+margin_right = 288.0
+margin_bottom = 48.0
+
+[node name="Key" parent="Keyboard/V/P1/Move" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+symbol = 1
+
+[node name="Label" type="Label" parent="Keyboard/V/P1/Move"]
+margin_left = 216.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "MOVE"
+
+[node name="Turn" type="HBoxContainer" parent="Keyboard/V/P1"]
+margin_top = 64.0
+margin_right = 288.0
+margin_bottom = 112.0
+
+[node name="Key" parent="Keyboard/V/P1/Turn" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+symbol = 3
+
+[node name="Key2" parent="Keyboard/V/P1/Turn" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+symbol = 4
+
+[node name="Label" type="Label" parent="Keyboard/V/P1/Turn"]
+margin_left = 216.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "TURN"
+
+[node name="MoveLRUD" type="HBoxContainer" parent="Keyboard/V/P1"]
+visible = false
+margin_top = 16.0
+margin_right = 288.0
+margin_bottom = 116.0
+
+[node name="V" type="VBoxContainer" parent="Keyboard/V/P1/MoveLRUD"]
+margin_right = 152.0
+margin_bottom = 100.0
+
+[node name="Key" parent="Keyboard/V/P1/MoveLRUD/V" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+symbol = 1
+
+[node name="H" type="HBoxContainer" parent="Keyboard/V/P1/MoveLRUD/V"]
+margin_top = 52.0
+margin_right = 152.0
+margin_bottom = 100.0
+
+[node name="Key2" parent="Keyboard/V/P1/MoveLRUD/V/H" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+symbol = 3
+
+[node name="Key3" parent="Keyboard/V/P1/MoveLRUD/V/H" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+symbol = 2
+
+[node name="Key4" parent="Keyboard/V/P1/MoveLRUD/V/H" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 48.0
+symbol = 4
+
+[node name="Label" type="Label" parent="Keyboard/V/P1/MoveLRUD"]
+margin_left = 216.0
+margin_top = 62.0
+margin_right = 288.0
+margin_bottom = 100.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "MOVE"
+
+[node name="Boost" type="HBoxContainer" parent="Keyboard/V/P1"]
+margin_top = 128.0
+margin_right = 288.0
+margin_bottom = 176.0
+
+[node name="Key" parent="Keyboard/V/P1/Boost" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 128.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 128, 48 )
+text = "CTRL"
+wide = true
+
+[node name="Label" type="Label" parent="Keyboard/V/P1/Boost"]
+margin_left = 198.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "BOOST"
+
+[node name="P2" type="VBoxContainer" parent="Keyboard/V"]
+margin_top = 256.0
+margin_right = 288.0
+margin_bottom = 432.0
+custom_constants/separation = 16
+
+[node name="Move" type="HBoxContainer" parent="Keyboard/V/P2"]
+margin_right = 288.0
+margin_bottom = 48.0
+
+[node name="Key" parent="Keyboard/V/P2/Move" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+text = "W"
+
+[node name="Label" type="Label" parent="Keyboard/V/P2/Move"]
+margin_left = 216.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "MOVE"
+
+[node name="Turn" type="HBoxContainer" parent="Keyboard/V/P2"]
+margin_top = 64.0
+margin_right = 288.0
+margin_bottom = 112.0
+
+[node name="Key" parent="Keyboard/V/P2/Turn" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+text = "A"
+
+[node name="Key2" parent="Keyboard/V/P2/Turn" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+text = "D"
+
+[node name="Label" type="Label" parent="Keyboard/V/P2/Turn"]
+margin_left = 216.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "TURN"
+
+[node name="MoveLRUD" type="HBoxContainer" parent="Keyboard/V/P2"]
+visible = false
+margin_top = 16.0
+margin_right = 316.0
+margin_bottom = 116.0
+
+[node name="V" type="VBoxContainer" parent="Keyboard/V/P2/MoveLRUD"]
+margin_right = 152.0
+margin_bottom = 100.0
+
+[node name="Key" parent="Keyboard/V/P2/MoveLRUD/V" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+text = "W"
+
+[node name="H" type="HBoxContainer" parent="Keyboard/V/P2/MoveLRUD/V"]
+margin_top = 52.0
+margin_right = 152.0
+margin_bottom = 100.0
+
+[node name="Key2" parent="Keyboard/V/P2/MoveLRUD/V/H" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+text = "A"
+
+[node name="Key3" parent="Keyboard/V/P2/MoveLRUD/V/H" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 48.0
+text = "S"
+
+[node name="Key4" parent="Keyboard/V/P2/MoveLRUD/V/H" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 48.0
+text = "D"
+
+[node name="Label" type="Label" parent="Keyboard/V/P2/MoveLRUD"]
+margin_left = 244.0
+margin_top = 62.0
+margin_right = 316.0
+margin_bottom = 100.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "MOVE"
+
+[node name="Boost2" type="HBoxContainer" parent="Keyboard/V/P2"]
+margin_top = 128.0
+margin_right = 288.0
+margin_bottom = 176.0
+
+[node name="Key" parent="Keyboard/V/P2/Boost2" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 128.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 128, 48 )
+text = "SHIFT"
+wide = true
+
+[node name="Label" type="Label" parent="Keyboard/V/P2/Boost2"]
+margin_left = 198.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 48.0
+size_flags_horizontal = 14
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 4 )
+text = "BOOST"
+
+[node name="NavigationButtons" parent="." instance=ExtResource( 15 )]

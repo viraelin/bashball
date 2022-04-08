@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/UI/Menu/MenuVictory.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/res/menu_font_big.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/UI/Menu/MenuButton.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.48913, 1 ), -0.604041, -0.604041, 0, 0, Vector2( 1, 0 ), -2.69091, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 549.01
+initial_velocity_random = 0.94
+angular_velocity = 84.71
+angular_velocity_random = 0.41
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 200.0
+damping_random = 0.21
+angle = 169.4
+angle_random = 0.74
+scale = 16.0
+scale_random = 0.35
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="MenuVictory" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_top = 0.178
+anchor_right = 1.0
+anchor_bottom = 0.267
+margin_top = -0.160004
+margin_bottom = -0.240021
+custom_fonts/font = ExtResource( 2 )
+text = "VICTORY!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TeamMembers" type="Node2D" parent="."]
+position = Vector2( 640, 416 )
+
+[node name="Particles2D" type="Particles2D" parent="TeamMembers"]
+emitting = false
+amount = 256
+one_shot = true
+explosiveness = 0.63
+process_material = SubResource( 3 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.3
+anchor_top = 0.6
+anchor_right = 0.7
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Rematch" parent="Buttons" instance=ExtResource( 3 )]
+margin_top = 93.0
+margin_right = 512.0
+margin_bottom = 141.0
+text = "Rematch"
+
+[node name="Exit" parent="Buttons" instance=ExtResource( 3 )]
+margin_top = 145.0
+margin_right = 512.0
+margin_bottom = 193.0
+text = "Main Menu"
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/show = SubResource( 6 )

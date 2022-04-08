@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Effects/screen_shake.shader" type="Shader" id=1]
+[ext_resource path="res://src/Effects/ScreenShake.gd" type="Script" id=2]
+[ext_resource path="res://src/Autoload/Effects.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/xyz = Vector3( 0, 0, 0 )
+
+[node name="Effects" type="Node2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Particles" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 110
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Overlay"]
+z_index = 10
+copy_mode = 2
+rect = Rect2( 0, 0, 1280, 720 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ScreenShake" type="ColorRect" parent="Overlay/BackBufferCopy"]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Duration" type="Timer" parent="Overlay/BackBufferCopy/ScreenShake"]
+one_shot = true
+
+[node name="ScreenTransitions" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 120

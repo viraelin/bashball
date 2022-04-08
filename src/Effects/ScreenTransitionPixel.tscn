@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Effects/ScreenTransitionPixel.gd" type="Script" id=1]
+[ext_resource path="res://src/Effects/screen_transition_pixel.shader" type="Shader" id=2]
+[ext_resource path="res://src/Effects/ScreenTransition.tscn" type="PackedScene" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/pixel = 0.0001
+
+[node name="ScreenTransitionPixel" instance=ExtResource( 3 )]
+material = SubResource( 1 )
+mouse_filter = 2
+script = ExtResource( 1 )

@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UI/Menu/NavigationButtons.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/res/menu_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/UI/Menu/Key.tscn" type="PackedScene" id=4]
+
+[node name="NavigationButtons" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0.588235 )
+anchor_left = 0.05
+anchor_top = 0.85
+anchor_right = 0.95
+anchor_bottom = 0.95
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="H" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 2
+
+[node name="Back" type="HBoxContainer" parent="H"]
+margin_left = 1024.0
+margin_top = 12.0
+margin_right = 1152.0
+margin_bottom = 60.0
+size_flags_vertical = 4
+custom_constants/separation = 8
+
+[node name="Key" parent="H/Back" instance=ExtResource( 4 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 128.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 128, 48 )
+text = "BKSP"
+wide = true
+
+[node name="Button" parent="H/Back" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+text = "B"
+rounded = true
+
+[node name="Label" type="Label" parent="H/Back"]
+margin_left = 56.0
+margin_top = 5.0
+margin_right = 128.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 2 )
+text = "Back"

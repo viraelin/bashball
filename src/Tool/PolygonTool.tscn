@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Tool/PolygonTool.gd" type="Script" id=1]
+
+[node name="PolygonCreator" type="Polygon2D"]
+color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
+antialiased = true
+polygon = PoolVector2Array( 3.91887e-15, -64, 64, 0, 3.91887e-15, 64, -64, 7.83774e-15 )
+script = ExtResource( 1 )

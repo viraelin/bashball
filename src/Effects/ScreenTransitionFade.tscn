@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Effects/ScreenTransitionFade.gd" type="Script" id=1]
+[ext_resource path="res://src/Effects/ScreenTransition.tscn" type="PackedScene" id=2]
+
+[node name="ScreenTransitionFade" instance=ExtResource( 2 )]
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )

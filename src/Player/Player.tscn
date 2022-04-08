@@ -1,0 +1,252 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://src/UI/res/player_label_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/Tool/OutlineTool.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Effects/Trail.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Tool/PolygonTool.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/light.png" type="Texture" id=5]
+[ext_resource path="res://src/Player/PlayerControllerInput.gd" type="Script" id=6]
+[ext_resource path="res://src/Player/PlayerKeyboardInput.gd" type="Script" id=7]
+[ext_resource path="res://src/Player/Player.gd" type="Script" id=8]
+[ext_resource path="res://src/Player/Origin.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Player/Body.tscn" type="PackedScene" id=10]
+
+[sub_resource type="PhysicsMaterial" id=8]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BoostRecharge/OutlineCreator:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.858824, 0.858824, 0.858824, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BoostRecharge/PolygonCreator:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.858824, 0.858824, 0.858824, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoostRecharge/PolygonCreator:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BoostRecharge:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "boost_recharge"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("BoostRecharge/OutlineCreator:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BoostRecharge/OutlineCreator:default_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7, 1 ),
+"transitions": PoolRealArray( 1.36604, 1 ),
+"update": 0,
+"values": [ Color( 0.858824, 0.858824, 0.858824, 0 ), Color( 0.858824, 0.858824, 0.858824, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoostRecharge/PolygonCreator:color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.7, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 0.420448, 1 ),
+"update": 0,
+"values": [ Color( 0.858824, 0.858824, 0.858824, 1 ), Color( 0.858824, 0.858824, 0.858824, 1 ), Color( 0.858824, 0.858824, 0.858824, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BoostRecharge/PolygonCreator:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.7, 1, 1.2, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 2, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BoostRecharge:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.7, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="OccluderPolygon2D" id=3]
+
+[sub_resource type="Animation" id=7]
+resource_name = "squish"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 0.6 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Player" type="RigidBody2D"]
+process_priority = -1
+collision_layer = 8
+collision_mask = 15
+mode = 2
+physics_material_override = SubResource( 8 )
+gravity_scale = 0.0
+continuous_cd = 2
+contacts_reported = 8
+contact_monitor = true
+linear_damp = 5.5
+script = ExtResource( 8 )
+
+[node name="PlayerKeyboardInput" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="PlayerControllerInput" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="BoostRecharge" type="Node2D" parent="."]
+
+[node name="OutlineCreator" parent="BoostRecharge" instance=ExtResource( 2 )]
+points = PoolVector2Array( 22.6274, 22.6274, -22.6274, 22.6274, -22.6274, -22.6274, 22.6274, -22.6274, 22.6274, 22.6274 )
+antialiased = false
+radius = 32
+angle = 45.0
+
+[node name="PolygonCreator" parent="BoostRecharge" instance=ExtResource( 4 )]
+color = Color( 0.858824, 0.858824, 0.858824, 1 )
+antialiased = false
+polygon = PoolVector2Array( 22.6274, 22.6274, -22.6274, 22.6274, -22.6274, -22.6274, 22.6274, -22.6274 )
+radius = 32
+angle = 45.0
+
+[node name="Animator" type="AnimationPlayer" parent="BoostRecharge"]
+root_node = NodePath("../..")
+playback_process_mode = 0
+method_call_mode = 1
+anims/RESET = SubResource( 5 )
+anims/boost_recharge = SubResource( 4 )
+
+[node name="Body" parent="." instance=ExtResource( 10 )]
+
+[node name="Trail" parent="." instance=ExtResource( 3 )]
+width = 32.0
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+limit = 32
+
+[node name="Origin" parent="." instance=ExtResource( 9 )]
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 5 )
+texture_scale = 2.0
+energy = 0.75
+shadow_enabled = true
+shadow_filter = 5
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 3 )
+
+[node name="HitCooldown" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.3
+one_shot = true
+
+[node name="BoostCooldown" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+anims/squish = SubResource( 7 )
+
+[node name="NumberLabel" type="Node2D" parent="."]
+z_index = 20
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="NumberLabel"]
+modulate = Color( 1, 1, 1, 0.588235 )
+margin_left = -32.0
+margin_top = -88.0
+margin_right = 32.0
+margin_bottom = -24.0
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 32, 32 )
+custom_fonts/font = ExtResource( 1 )
+text = "ID"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}

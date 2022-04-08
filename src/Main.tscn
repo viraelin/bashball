@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UI/InputTypeUpdater.gd" type="Script" id=1]
+[ext_resource path="res://src/environment.tres" type="Environment" id=4]
+[ext_resource path="res://src/Main.gd" type="Script" id=6]
+
+[node name="Main" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 4 )
+
+[node name="PauseTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="InputTypeUpdater" type="Node" parent="."]
+script = ExtResource( 1 )
